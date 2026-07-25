@@ -14,10 +14,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'   # Use Node >=22.12.0 to satisfy node-abi and similar packages
+          node-version: '22.x'   # >=22.12.0 required by some deps
           cache: 'npm'
 
       - name: Install dependencies
+        # Use npm ci for reproducible builds. If you do not have package-lock.json in the repo, use `npm install` instead.
         run: npm ci
 
       - name: Build dist
